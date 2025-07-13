@@ -21,7 +21,7 @@ def InferenceResult():
         workspace_name="brac-6bgtt",
         workflow_id="custom-workflow",
         images={
-            "image": "cow.jpg"
+            "image": "cow_7_test.jpg"
         },
         use_cache=True # cache workflow definition for 15 minutes
     )
@@ -113,7 +113,7 @@ def main():
     db_client = DatabaseClient()
 
     # Image path
-    image_path = "test_full_blur.jpg"
+    image_path = "cow_7_test.jpg"
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"Image file not found: {image_path}")
 
@@ -151,9 +151,9 @@ def main():
     print(f"Extracted features shape: {features.shape}")
     print(f"First few feature values: {features[:10]}")
 
-    reference_number = "COW_006"
+    reference_number = "COW_007"
 
-    # db_client.save_features(reference_number,features)
+    db_client.save_features(reference_number,features)
 
     # Check if features match for the given reference number
     is_match, distance = db_client.match_features(reference_number, features, threshold=8.0)
